@@ -6,7 +6,7 @@
 /*   By: jaiane <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:34:32 by jaiane            #+#    #+#             */
-/*   Updated: 2024/12/10 21:34:21 by jaiane           ###   ########.fr       */
+/*   Updated: 2024/12/11 18:55:44 by jaiane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static	int	hex_nlen(unsigned long n)
 	return (count);
 }
 
-int	print_pointer(void *p)
+int	print_pointerr(void *p)
 {
 	char	*hex_chars;
 	unsigned long	addr;
@@ -78,4 +78,18 @@ int	print_pointer(void *p)
 	write(1, buffer, nlen);
 	free(buffer);
 	return (nlen + 2);
+}
+
+int	print_pointer(unsigned long long p)
+{
+	int	count;
+
+	count = write(1, "0x", 2);
+	if (p == 0)
+		count += write(1, "0", 1);
+	else
+		count += print_number_base(p, 16, 0);
+	return (count);
+
+		
 }

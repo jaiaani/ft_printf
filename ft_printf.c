@@ -6,11 +6,11 @@
 /*   By: jaiane <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:15:31 by jaiane            #+#    #+#             */
-/*   Updated: 2024/12/10 20:26:51 by jaiane           ###   ########.fr       */
+/*   Updated: 2024/12/11 19:01:44 by jaiane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int     print_format(char type, va_list ap)
 {
@@ -22,15 +22,15 @@ int     print_format(char type, va_list ap)
 	else if (type == 's')
 		count += print_str(va_arg(ap, char *));
 	else if (type == 'p')
-		count += print_pointer(va_arg(ap, void *));
+		count += print_pointer(va_arg(ap, unsigned long long));
         else if (type == 'd' || type == 'i')
-                count += print_number_base((long)va_arg(ap, int), 10, 0);
+                count += print_number_base((long long)va_arg(ap, int), 10, 0);
 	else if	(type == 'u')
-		count += print_number_base(va_arg(ap, unsigned long), 10, 0);
+		count += print_number_base((long long)va_arg(ap, unsigned int), 10, 0);
         else if (type == 'x')
-                count += print_number_base((long)va_arg(ap, unsigned int), 16, 0);
+                count += print_number_base((long long)va_arg(ap, unsigned int), 16, 0);
 	else if (type == 'X')
-		count += print_number_base((long)va_arg(ap, unsigned int), 16, 1);
+		count += print_number_base((long long)va_arg(ap, unsigned int), 16, 1);
 	else if (type == '%')
 		count += write(1, "%", 1);
         else
