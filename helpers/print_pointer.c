@@ -1,37 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_c.c                                          :+:      :+:    :+:   */
+/*   print_pointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaiane <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 19:45:15 by jaiane            #+#    #+#             */
-/*   Updated: 2024/12/03 21:33:07 by jaiane           ###   ########.fr       */
+/*   Created: 2024/12/05 00:34:32 by jaiane            #+#    #+#             */
+/*   Updated: 2024/12/10 21:34:21 by jaiane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "libft.h"
+#include "../ft_printf.h"
 
-int	print_c(int c)
+void	ft_bzero(void *s, size_t n)
 {
-	return (write(1, &c, 1));
+	unsigned char	*str;
+
+	str = (unsigned char *)s;
+	while (n-- > 0)
+		*str++ = '\0';
 }
 
-int	print_s(char *str)
+void	*ft_calloc(size_t nelem, size_t elsize)
 {
-	int	count;
+	size_t	tsize;
+	void	*space;
 
-	count = 0;
-	while (str[count])
-		count++;
-	return (write(1, str, count));
+	if (nelem == 0 || elsize == 0)
+		return (malloc(0));
+	tsize = nelem * elsize;
+	if (tsize / elsize != nelem)
+		return (NULL);
+	space = malloc(tsize);
+	if (!space)
+		return (NULL);
+	ft_bzero(space, tsize);
+	return (space);
 }
 
 static	int	hex_nlen(unsigned long n)
 {
 	int	count;
+
 	count = 0;
 	if (n == 0)
 		return (1);
@@ -43,51 +53,29 @@ static	int	hex_nlen(unsigned long n)
 	return (count);
 }
 
-int	print_p(void *p)
+int	print_pointer(void *p)
 {
+	char	*hex_chars;
 	unsigned long	addr;
-	char	hex_char[16] = "0123456789abcdef";
 	char	*buffer;
 	int	i;
 	int	nlen;
 
+	hex_chars = "0123456789abcdef";
 	addr = (unsigned long) p;
 	nlen = hex_nlen(addr);
-	buffer = malloc(sizeof(char) * (nlen + 1));
+	buffer = calloc(sizeof(char),  (nlen + 1));
 	if (!buffer)
 		return (0);
 	i = nlen;
 	while (addr > 0)
 	{
-		buffer[i] = hex_char[addr % 16];
+		buffer[i] = hex_chars[addr % 16];
 		addr /= 16;
 		i--;
 	}
 	write(1, "0x", 2);
-	write(1, buffer, 16);
+	write(1, buffer, nlen);
 	free(buffer);
 	return (nlen + 2);
-}
-
-int	print_d(int d)
-{
-	
-}
-
-#include <stdio.h>
-
-int	main(void)
-{
-	int	a;
-	int	*b;
-	int	count;
-
-	a = 8;
-	b = &a;
-	count = printf("%p", b);
-	printf("\noriginal: %d\n", count);
-	count = print_p(b);
-	printf("\nmine: %d\n", count);
-
-	return (0);
 }
