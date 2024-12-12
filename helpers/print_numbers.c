@@ -6,13 +6,13 @@
 /*   By: jaiane <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:40:05 by jaiane            #+#    #+#             */
-/*   Updated: 2024/12/11 19:00:19 by jaiane           ###   ########.fr       */
+/*   Updated: 2024/12/12 19:25:54 by jaiane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	print_number_base(long long n, int base, int upp)
+int	print_number_base(long n, int base, int upp)
 {
 	int	count;
 	char	*hex_char;
