@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_numbers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaiane <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jados-sa <jados-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 22:40:05 by jaiane            #+#    #+#             */
-/*   Updated: 2024/12/12 19:25:54 by jaiane           ###   ########.fr       */
+/*   Created: 2025/01/03 19:44:59 by jados-sa          #+#    #+#             */
+/*   Updated: 2025/01/03 19:53:59 by jados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	print_number_base(long n, int base, int upp)
 {
-	int	count;
+	int		count;
 	char	*hex_char;
 
 	if (upp)
@@ -24,14 +24,13 @@ int	print_number_base(long n, int base, int upp)
 	if (n < 0)
 	{
 		write(1, "-", 1);
-		return print_number_base(-n, base, upp) + 1;
+		return (print_number_base(-n, base, upp) + 1);
 	}
 	else if (n < base)
 		return (print_char(hex_char[n]));
 	else
 	{
 		count = print_number_base(n / base, base, upp);
-		return count + print_number_base(n % base, base, upp);
+		return (count + print_number_base(n % base, base, upp));
 	}
 }
-

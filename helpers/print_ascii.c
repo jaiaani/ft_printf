@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_ascii.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaiane <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jados-sa <jados-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 23:08:28 by jaiane            #+#    #+#             */
-/*   Updated: 2024/12/12 19:19:03 by jaiane           ###   ########.fr       */
+/*   Created: 2025/01/03 19:42:21 by jados-sa          #+#    #+#             */
+/*   Updated: 2025/01/03 19:44:11 by jados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ unsigned int	print_str(const char *str)
 		count++;
 	return (write(1, str, count));
 }
-
